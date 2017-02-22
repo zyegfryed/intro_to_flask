@@ -1,0 +1,31 @@
+<h1>Introduction to Flask</h1>
+
+<p>Source code for the Introduction to Flask presentation given at Swisscom Digital Lab
+<a href="https://www.meetup.com/Swisscom-Digital-Lab/events/237521928/">meetup</a>.</p>
+
+<p><a href="https://developers.facebook.com/docs/messenger-platform/guides/setup#app_and_page_setup">Create a Facebook App and Page</a> and generate a <a href="https://developers.facebook.com/docs/messenger-platform/guides/setup#page_access_token">Page Access Token</a>.</p>
+
+<p>Open another terminal window and run the chatbot using the aforementioned Page
+Access Token:</p>
+
+<pre><code>$ export FLASK_APP=app.y
+$ export FB_VERIFY_TOKEN=&lt;SECRET&gt;
+$ export FB_PAGE_TOKEN=&lt;PAGE_ACCES_TOKEN&gt;
+$ flask run
+ * Serving Flask app "app"
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+</code></pre>
+
+<p>Ensure <a href="https://ngrok.com/download">nrgok</a> is installed, open a terminal window
+and create an HTTP(S) tunneling on port <code>5000</code>::</p>
+
+<pre><code>$ ngrok http 5000
+...
+Forwarding                    https://ca31e2d2.ngrok.io -&gt; localhost:5000
+...
+</code></pre>
+
+<p>Then, <a href="https://developers.facebook.com/docs/messenger-platform/guides/setup#webhook_setup">setup a Webhook</a> with the resulted HTTPS forwarding address and the previously defined <code>SECRET</code>.</p>
+
+<p>Chat with the bot either through the Messages tab of your Facebook Page or via
+Messenger App on your smartphone.</p>
