@@ -23,7 +23,13 @@ Token:
      * Serving Flask app "app"
      * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 
-Ensure [nrgok](https://ngrok.com/download) is installed, open a new terminal
+Ensure [redis](https://redis.io/download) is installed and running, then launch
+the queue worker in another terminal window:
+
+    $ export FB_PAGE_TOKEN=<PAGE_ACCES_TOKEN>
+    $ rqworker default
+
+Ensure [ngrok](https://ngrok.com/download) is installed, open a new terminal
 window and create an HTTP(S) tunneling on port `5000`::
 
     $ ngrok http 5000

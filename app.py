@@ -2,13 +2,13 @@ import os
 
 from flask import Flask, request
 from fbmessenger import BaseMessenger
-from fbmessenger import elements
+from redis import StrictRedis
+from rq.decorators import job
 
 
 class Messenger(BaseMessenger):
     def message(self, message):
-        element = elements.Text('Received: {0}'.format(message['message']['text']))
-        self.send(element.to_dict())
+        self.send({'text': 'Received: {0}'.format(message['message']['text'])})
 
     def delivery(self, message):
         pass
@@ -28,6 +28,12 @@ class Messenger(BaseMessenger):
 
 app = Flask(__name__)
 messenger = Messenger(os.environ.get('FB_PAGE_TOKEN'))
+redis = StrictRedis()
+
+
+@job('default', connection=redis)
+def messenger_handle(message):
+    messenger.handle(message)
 
 
 @app.route('/webhook', methods=['GET', 'POST'])
@@ -38,7 +44,7 @@ def webhook():
             return request.args.get('hub.challenge')
         return 'FB_VERIFY_TOKEN does not match.', 400
     elif request.method == 'POST':
-        messenger.handle(request.get_json(force=True))
+        messenger_handle.delay(request.get_json(force=True))
     return ''
 
 
