@@ -4,6 +4,11 @@ Source code for the Introduction to Flask presentation given at Swisscom Digital
 [meetup](https://www.meetup.com/Swisscom-Digital-Lab/events/237521928/).
 
 
+## Installation
+
+    $ pip install -r requirements.txt
+
+
 ## Usage
 
 [Create a Facebook App and Page](https://developers.facebook.com/docs/messenger-platform/guides/setup#app_and_page_setup) and generate a [Page Access Token](https://developers.facebook.com/docs/messenger-platform/guides/setup#page_access_token).
