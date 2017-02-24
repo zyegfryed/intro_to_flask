@@ -16,7 +16,7 @@ Source code for the Introduction to Flask presentation given at Swisscom Digital
 Open a terminal window and run the chatbot using the aforementioned Page Access
 Token:
 
-    $ export FLASK_APP=app.y
+    $ export FLASK_APP=app.py
     $ export FB_VERIFY_TOKEN=<SECRET>
     $ export FB_PAGE_TOKEN=<PAGE_ACCES_TOKEN>
     $ flask run
